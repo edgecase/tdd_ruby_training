@@ -10,6 +10,7 @@
 * running a 'program'
 ** evaluation and execution
 ** running through an ide (net beans, possibly the 'e' editor)
+** running it with JRuby
 * difference in message passing versus method calling
 ** using respond_to?
 ** introduction to method missing hook
