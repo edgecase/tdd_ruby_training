@@ -1,0 +1,34 @@
+=Introduction
+* EdgeCase
+* Jim
+* Joe
+
+=Classes, objects, and methods
+* require
+* classes and inheritance 
+* creating methods
+* running a 'program'
+** evaluation and execution
+** running through an ide (net beans, possibly the 'e' editor)
+* difference in message passing versus method calling
+** using respond_to?
+** introduction to method missing hook
+*** use with caution
+*** don't forget your environment - calling super()
+
+=Flow Control
+* if and unless
+** regular usage
+** inlined
+* case
+* blocks   <------ going to take quite a bit of time
+** File Access demo
+
+=Data Structures
+* Arrays
+* Hashes
+
+=Meta Programming
+* Calling methods dynamically (send, eval, etc.)
+* Adding methods
+* demo of Active Record dynamic finders
