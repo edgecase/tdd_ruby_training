@@ -1,0 +1,7 @@
+Ruby 101: A Test Driven Introduction to Ruby
+
+Come with us on a journey.  One that involves learning a new language in a way that demonstrates features and culture in one tutorial.  
+
+There is no doubting that Ruby has had one of the biggest impacts on the programming community over the last couple of years.  The community has built up .... [not sure if I need this or to 'sell ruby']
+
+In this tutorial we will introduce you to the Ruby language. We will show you the basics of creating objects, control structures, using meta programming and an extended discussion on blocks and the things that might look a bit odd.  
