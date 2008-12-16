@@ -1,7 +1,29 @@
 Ruby 101: A Test Driven Introduction to Ruby
 
-Come with us on a journey.  One that involves learning a new language in a way that demonstrates features and culture in one tutorial.  
+Come with us on a journey.  One that involves learning a new language
+in a way that demonstrates features and culture in one tutorial.
 
-There is no doubting that Ruby has had one of the biggest impacts on the programming community over the last couple of years.  The community has built up .... [not sure if I need this or to 'sell ruby']
+The Ruby language has gotten a lot of buzz in the IT industry lately.
+It is a highly expressive language that comes with great increases in
+productivity, or so some say.
 
-In this tutorial we will introduce you to the Ruby language. We will show you the basics of creating objects, control structures, using meta programming and an extended discussion on blocks and the things that might look a bit odd.  
+Test Driven Development is a "Best Practice" that has become quite
+popular for developing rock solid application with reduced debugging
+time.
+
+Ruby and TDD, two great tastes that taste great together.  This
+tutorial will combine TDD and Ruby training in a way to introduce you
+to the "Ruby Way" through tests.
+
+In this tutorial we will introduce you to the Ruby language. We will
+show you the basics of creating objects, control structures, using
+meta programming and an extended discussion on blocks and the things
+that might look a bit odd. You will walk away with a solid
+understanding of basic areas of ruby, a persistent knowledge base, in
+the form of a test suite, to take home and build upon, and a hunger to
+learn more and join the growing community of ruby developers.
+
+Bring you laptop, a sense of humor, and an open mind. 
+
+
+
