@@ -1,10 +1,9 @@
-require 'test/unit'
+#!/usr/bin/env ruby
+# -*- ruby -*-
 
-def __
-  "FILL ME IN"
-end
+require 'code_mash'
 
-class TestSomething < Test::Unit::TestCase
+class AboutAsserts < CodeMash::Koan
   def test_assert
     assert true
     assert_equal 1, 1
@@ -12,9 +11,7 @@ class TestSomething < Test::Unit::TestCase
   end
 end
 
-CodeMash = Test::Unit
-
-class ArrayTest < CodeMash::TestCase
+class AboutArrays < CodeMash::Koan
   def test_food
     food = [:peanut, :button, :and, :jelly]
     assert_equal __, food[0]
