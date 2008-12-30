@@ -18,6 +18,7 @@ module CodeMash
         @pass_count += 1
         puts "  #{test.name} has expanded your awareness."
       else
+        puts "  #{test.name} has troubled your karma."
         @failed_test = test
         @failure = test.failure
         throw :code_mash_exit
@@ -47,7 +48,10 @@ module CodeMash
       }
     end
 
+    # Hat's tip to Ara T. Howard for the zen statements from his
+    # metakoans Ruby Quiz (http://rubyquiz.com/quiz67.html)
     def say_something_zenlike
+      puts
       if !failed?
         puts "Mountains are again merely mountains"
       else
@@ -69,7 +73,7 @@ module CodeMash
     end
   end      
 
-  class TestCase
+  class Koan
     include Test::Unit::Assertions
 
     attr_reader :name, :failure
@@ -104,7 +108,7 @@ module CodeMash
       end
 
       def method_added(name)
-        testmethods << name
+        testmethods << name unless tests_disabled?
       end
 
       def run_tests(accumulator)
@@ -132,14 +136,22 @@ module CodeMash
         accumulator.accumulate(test)
       end
 
+      def end_of_enlightenment
+        @tests_disabled = true
+      end
+
       # Lazy initialize list of subclasses
       def subclasses
         @subclasses ||= []
       end
 
-      # Lazy initialize list of test methods.
+       # Lazy initialize list of test methods.
       def testmethods
         @test_methods ||= []
+      end
+
+      def tests_disabled?
+        @tests_disabled ||= false
       end
 
     end
@@ -149,7 +161,7 @@ end
 END {
   accumulator = CodeMash::Accumulator.new
   catch(:code_mash_exit) {
-    CodeMash::TestCase.subclasses.each do |sc|
+    CodeMash::Koan.subclasses.each do |sc|
       sc.run_tests(accumulator)
     end
   }
