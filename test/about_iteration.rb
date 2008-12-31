@@ -24,15 +24,24 @@ class AboutIteration < CodeMash::Koan
     assert_equal __, sum
   end
 
+  def test_break_works_with_each_style_iterations
+    array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    sum = 0
+    array.each { |item|
+      break if item > 3
+      sum += item
+    }
+    assert_equal __, sum
+  end
+
   def test_collect_transforms_elements_of_an_array
     array = [1, 2, 3]
     new_array = array.collect { |item| item + 10 }
     assert_equal __, new_array
 
+    # NOTE: 'map' is another name for the 'collect' operation
     another_array = array.map { |item| item + 10 }
     assert_equal __, another_array
-
-    # NOTE: 'collect' and 'map' are aliases
   end
 
   def test_select_selects_certain_items_from_an_array
@@ -41,10 +50,9 @@ class AboutIteration < CodeMash::Koan
     even_numbers = array.select { |item| (item % 2) == 0 }
     assert_equal __, even_numbers
 
+    # NOTE: 'find_all' is another name for the 'select' operation
     more_even_numbers = array.find_all { |item| (item % 2) == 0 }
     assert_equal __, more_even_numbers
-
-    # NOTE: 'select' and 'find_all' are aliases
   end
 
   def test_find_locates_the_first_element_matching_a_criteria
@@ -60,6 +68,7 @@ class AboutIteration < CodeMash::Koan
     result2 = [2, 3, 4].inject(1) { |sum, item| sum * item }
     assert_equal __, result2
 
+    # Extra Credit:
     # Describe in your own words what inject does.
   end
 
@@ -72,8 +81,12 @@ class AboutIteration < CodeMash::Koan
     file = File.open("example_file.txt")
     upcase_lines = file.map { |line| line.strip.upcase }
     assert_equal __, upcase_lines
+
+    # NOTE: You can create your own collections that work with each,
+    # map, select, etc.
   ensure
-    # Arg, this is ugly
+    # Arg, this is ugly.
+    # We will figure out how to fix this later.
     file.close if file
   end
 
