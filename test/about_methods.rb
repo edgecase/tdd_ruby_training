@@ -76,10 +76,23 @@ class AboutMethods < CodeMash::Koan
     def name
       "Fido"
     end
+
+    private
+
+    def tail
+      "tail"
+    end
   end
   
-  def test_calling_instance_methods_in_other_classes
+  def test_calling_methods_in_other_objects_require_explicit_receiver
     rover = Dog.new
     assert_equal __, rover.name
+  end
+
+  def test_calling_private_methods_in_other_objects
+    rover = Dog.new
+    assert_raise(NoMethodError) do
+      rover.tail
+    end
   end
 end
