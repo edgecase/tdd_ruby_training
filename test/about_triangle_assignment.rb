@@ -1,11 +1,7 @@
 require 'code_mash'
 
-class TriangleError < StandardError
-end
-
-def triangle(a, b, c)
-  # WRITE THIS CODE
-end
+# You need to write the triangle method in the file 'triangle.rb'
+require 'triangle.rb'
 
 class AboutTriangleAssignment < CodeMash::Koan
   def test_equilateral_triangles_have_equal_sides
@@ -25,11 +21,5 @@ class AboutTriangleAssignment < CodeMash::Koan
     assert_equal :scalene, triangle(10, 11, 12)
     assert_equal :scalene, triangle(5, 4, 2)
   end
-
-  def test_illegal_triangles_throw_exceptions
-    assert_raise(TriangleError) do triangle(0, 0, 0) end
-    assert_raise(TriangleError) do triangle(3, 4, -5) end
-    assert_raise(TriangleError) do triangle(2, 4, 2) end 
- end
 end
   
