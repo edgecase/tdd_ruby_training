@@ -125,7 +125,7 @@ module CodeMash
         puts
         puts "Contemplating #{self}"
         testmethods.each do |m|
-          self.run_test(m, accumulator)
+          self.run_test(m, accumulator) if Koan.test_pattern =~ m.to_s
         end
       end
 
@@ -150,6 +150,23 @@ module CodeMash
         @tests_disabled = true
       end
 
+      def command_line(args)
+        args.each do |arg|
+          case arg
+          when /^-n\/(.*)\/$/
+            @test_pattern = Regexp.new($1)
+          when /^-n(.*)$/
+            @test_pattern = Regexp.new(Regexp.quote($1))
+          else
+            if File.exist?(arg)
+              load(arg)
+            else
+              fail "Unknown command line argument '#{arg}'"
+            end              
+          end
+        end
+      end
+
       # Lazy initialize list of subclasses
       def subclasses
         @subclasses ||= []
@@ -164,11 +181,16 @@ module CodeMash
         @tests_disabled ||= false
       end
 
+      def test_pattern
+        @test_pattern ||= /./
+      end
+
     end
   end
 end
 
 END {
+  CodeMash::Koan.command_line(ARGV)
   zen_master = CodeMash::Sensei.new
   catch(:code_mash_exit) {
     CodeMash::Koan.subclasses.each do |sc|
