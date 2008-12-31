@@ -107,8 +107,14 @@ module CodeMash
     def teardown
     end
 
-    def __
-      "FILL ME IN"
+    NO_VALUE = Object.new
+
+    def __(value=NO_VALUE)
+      if value == NO_VALUE
+        "FILL ME IN"
+      else
+        value
+      end
     end
 
     # Class methods for the CodeMash test suite.
