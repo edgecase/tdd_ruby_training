@@ -4,8 +4,10 @@
 require 'test/unit/assertions'
 
 module CodeMash
-  class Accumulator
+  class Sensei
     attr_reader :failure, :failed_test
+
+    AssertionError = Test::Unit::AssertionFailedError
 
     def initialize
       @pass_count = 0
@@ -29,6 +31,10 @@ module CodeMash
       ! @failure.nil?
     end
 
+    def assert_failed?
+      failure.is_a?(AssertionError)
+    end
+
     def report
       if failed?
         puts
@@ -36,7 +42,11 @@ module CodeMash
         puts failure.message
         puts
         puts "Please meditate on the following code:"
-        puts find_interesting_lines(failure.backtrace)
+        if assert_failed?
+          puts find_interesting_lines(failure.backtrace)
+        else
+          puts failure.backtrace
+        end
         puts
       end
       say_something_zenlike
@@ -55,7 +65,7 @@ module CodeMash
       if !failed?
         puts "Mountains are again merely mountains"
       else
-        case @pass_count
+        case (@pass_count % 10)
         when 0
           puts "mountains are merely mountains"
         when 1, 2
@@ -159,11 +169,11 @@ module CodeMash
 end
 
 END {
-  accumulator = CodeMash::Accumulator.new
+  zen_master = CodeMash::Sensei.new
   catch(:code_mash_exit) {
     CodeMash::Koan.subclasses.each do |sc|
-      sc.run_tests(accumulator)
+      sc.run_tests(zen_master)
     end
   }
-  accumulator.report
+  zen_master.report
 }
