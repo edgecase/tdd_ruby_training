@@ -20,7 +20,7 @@ module CodeMash
         @pass_count += 1
         puts "  #{test.name} has expanded your awareness."
       else
-        puts "  #{test.name} has troubled your karma."
+        puts "  #{test.name} has damaged your karma."
         @failed_test = test
         @failure = test.failure
         throw :code_mash_exit
