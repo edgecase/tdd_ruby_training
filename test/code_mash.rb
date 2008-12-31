@@ -129,7 +129,7 @@ module CodeMash
 
       def run_tests(accumulator)
         puts
-        puts "Contemplating #{self}"
+        puts "Thinking #{self}"
         testmethods.each do |m|
           self.run_test(m, accumulator) if Koan.test_pattern =~ m.to_s
         end
