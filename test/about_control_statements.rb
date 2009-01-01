@@ -45,6 +45,11 @@ class AboutControlStatements < CodeMash::Koan
     assert_equal __, value
   end
 
+  def test_condition_operators
+    assert_equal __, (true ? :true_value : :false_value)
+    assert_equal __, (false ? :true_value : :false_value)
+  end
+
   def test_if_statement_modifiers
     result = :default_value
     result = :true_value if true
