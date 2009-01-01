@@ -15,7 +15,7 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, result
   end
 
-  # (NOTE: Using eval because the above is a SYNTAX error)
+  # (NOTE: Using eval because this is a SYNTAX error)
   #
   # Ruby doesn't know if you mean:
   #
@@ -44,6 +44,31 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, exception.message
   end
 
+  # ------------------------------------------------------------------
+
+  def method_with_defaults(a, b=:default_value)
+    [a, b]
+  end
+
+  def test_calling_with_default_values
+    assert_equal [1, __], method_with_defaults(1)
+    assert_equal [1, __], method_with_defaults(1, 2)
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_with_var_args(*args)
+    args
+  end
+
+  def test_calling_with_variable_arguments
+    assert_equal __, method_with_var_args
+    assert_equal __, method_with_var_args(:one)
+    assert_equal __, method_with_var_args(:one, :two)
+  end
+
+  # ------------------------------------------------------------------
+
   def my_same_class_method(a, b)
     a * b
   end
@@ -55,6 +80,8 @@ class AboutMethods < CodeMash::Koan
   def test_calling_methods_in_same_class_with_explicit_receiver
     assert_equal __, self.my_same_class_method(3,4)
   end
+
+  # ------------------------------------------------------------------
 
   def my_private_method
     "a secret"
@@ -71,6 +98,8 @@ class AboutMethods < CodeMash::Koan
     end
     assert_match /__/, exception.message
   end
+
+  # ------------------------------------------------------------------
 
   class Dog
     def name
