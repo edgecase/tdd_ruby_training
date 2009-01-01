@@ -4,8 +4,10 @@
 require 'test/unit/assertions'
 
 module CodeMash
-  class Accumulator
+  class Sensei
     attr_reader :failure, :failed_test
+
+    AssertionError = Test::Unit::AssertionFailedError
 
     def initialize
       @pass_count = 0
@@ -18,7 +20,7 @@ module CodeMash
         @pass_count += 1
         puts "  #{test.name} has expanded your awareness."
       else
-        puts "  #{test.name} has troubled your karma."
+        puts "  #{test.name} has damaged your karma."
         @failed_test = test
         @failure = test.failure
         throw :code_mash_exit
@@ -29,6 +31,10 @@ module CodeMash
       ! @failure.nil?
     end
 
+    def assert_failed?
+      failure.is_a?(AssertionError)
+    end
+
     def report
       if failed?
         puts
@@ -36,7 +42,11 @@ module CodeMash
         puts failure.message
         puts
         puts "Please meditate on the following code:"
-        puts find_interesting_lines(failure.backtrace)
+        if assert_failed?
+          puts find_interesting_lines(failure.backtrace)
+        else
+          puts failure.backtrace
+        end
         puts
       end
       say_something_zenlike
@@ -55,7 +65,7 @@ module CodeMash
       if !failed?
         puts "Mountains are again merely mountains"
       else
-        case @pass_count
+        case (@pass_count % 10)
         when 0
           puts "mountains are merely mountains"
         when 1, 2
@@ -97,8 +107,14 @@ module CodeMash
     def teardown
     end
 
-    def __
-      "FILL ME IN"
+    NO_VALUE = Object.new
+
+    def __(value=NO_VALUE)
+      if value == NO_VALUE
+        "FILL ME IN"
+      else
+        value
+      end
     end
 
     # Class methods for the CodeMash test suite.
@@ -113,9 +129,9 @@ module CodeMash
 
       def run_tests(accumulator)
         puts
-        puts "Contemplating #{self}"
+        puts "Thinking #{self}"
         testmethods.each do |m|
-          self.run_test(m, accumulator)
+          self.run_test(m, accumulator) if Koan.test_pattern =~ m.to_s
         end
       end
 
@@ -140,6 +156,23 @@ module CodeMash
         @tests_disabled = true
       end
 
+      def command_line(args)
+        args.each do |arg|
+          case arg
+          when /^-n\/(.*)\/$/
+            @test_pattern = Regexp.new($1)
+          when /^-n(.*)$/
+            @test_pattern = Regexp.new(Regexp.quote($1))
+          else
+            if File.exist?(arg)
+              load(arg)
+            else
+              fail "Unknown command line argument '#{arg}'"
+            end              
+          end
+        end
+      end
+
       # Lazy initialize list of subclasses
       def subclasses
         @subclasses ||= []
@@ -154,16 +187,21 @@ module CodeMash
         @tests_disabled ||= false
       end
 
+      def test_pattern
+        @test_pattern ||= /./
+      end
+
     end
   end
 end
 
 END {
-  accumulator = CodeMash::Accumulator.new
+  CodeMash::Koan.command_line(ARGV)
+  zen_master = CodeMash::Sensei.new
   catch(:code_mash_exit) {
     CodeMash::Koan.subclasses.each do |sc|
-      sc.run_tests(accumulator)
+      sc.run_tests(zen_master)
     end
   }
-  accumulator.report
+  zen_master.report
 }
