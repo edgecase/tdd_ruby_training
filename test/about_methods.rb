@@ -33,12 +33,12 @@ class AboutMethods < CodeMash::Koan
   # NOTE: wrong number of argument is not a SYNTAX error, but a
   # runtime error.
   def test_calling_global_methods_with_wrong_number_of_arguments
-    exception = assert_raise(ArgumentError) do
+    exception = assert_raise(___) do
       my_global_method
     end
     assert_equal __, exception.message
 
-    exception = assert_raise(ArgumentError) do
+    exception = assert_raise(___) do
       my_global_method(1,2,3)
     end
     assert_equal __, exception.message
@@ -116,7 +116,7 @@ class AboutMethods < CodeMash::Koan
   end
 
   def test_calling_private_methods_with_an_explicit_receiver
-    exception = assert_raise(NoMethodError) do
+    exception = assert_raise(___) do
       self.my_private_method
     end
     assert_match /__/, exception.message
@@ -143,7 +143,7 @@ class AboutMethods < CodeMash::Koan
 
   def test_calling_private_methods_in_other_objects
     rover = Dog.new
-    assert_raise(NoMethodError) do
+    assert_raise(___) do
       rover.tail
     end
   end

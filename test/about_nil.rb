@@ -6,7 +6,7 @@ class AboutNil < CodeMash::Koan
   end
 
   def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil
-    exception = assert_raise(NoMethodError) do
+    exception = assert_raise(___) do
       nil.some_method_nil_doesnt_know_about
     end
     assert_match /__/, exception.message

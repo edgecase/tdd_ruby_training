@@ -3,6 +3,9 @@
 
 require 'test/unit/assertions'
 
+class FillMeInError < StandardError
+end
+
 module CodeMash
   class Sensei
     attr_reader :failure, :failed_test
@@ -107,14 +110,12 @@ module CodeMash
     def teardown
     end
 
-    NO_VALUE = Object.new
+    def __(value="FILL ME IN")
+      value
+    end
 
-    def __(value=NO_VALUE)
-      if value == NO_VALUE
-        "FILL ME IN"
-      else
-        value
-      end
+    def ___(value=FillMeInError)
+      value
     end
 
     # Class methods for the CodeMash test suite.
