@@ -15,21 +15,21 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, result
   end
 
-  # (NOTE: Using eval because this is a SYNTAX error)
-  #
-  # Ruby doesn't know if you mean:
-  #
-  #   assert_equal(5, my_global_method(2), 3)
-  # or
-  #   assert_equal(5, my_global_method(2, 3))
-  #
-  # Rewrite the eval string to continue.
-  #
+  # (NOTE: We are Using eval below because the example code is
+  # considered to be syntactically invalid).
   def test_sometimes_missing_parenthesis_are_ambiguous
     eval "assert_equal 5, my_global_method 2, 3"
+    #
+    # Ruby doesn't know if you mean:
+    #
+    #   assert_equal(5, my_global_method(2), 3)
+    # or
+    #   assert_equal(5, my_global_method(2, 3))
+    #
+    # Rewrite the eval string to continue.
+    #
   end
-
-
+  
   # NOTE: wrong number of argument is not a SYNTAX error, but a
   # runtime error.
   def test_calling_global_methods_with_wrong_number_of_arguments
@@ -65,6 +65,29 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, method_with_var_args
     assert_equal __, method_with_var_args(:one)
     assert_equal __, method_with_var_args(:one, :two)
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_with_explicit_return
+    :a_non_return_value
+    return :return_value
+    :anoher_non_return_value
+  end
+
+  def test_method_with_explicit_return
+    assert_equal __, method_with_explicit_return
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_without_explicit_return
+    :a_non_return_value
+    :return_value
+  end
+
+  def test_method_without_explicit_return
+    assert_equal __, method_without_explicit_return
   end
 
   # ------------------------------------------------------------------
