@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# -*- ruby -*-
+
+task :check do
+  about_files = Dir['about_*.rb'].size
+  about_requires = `grep require path_to_enlightenment.rb | wc -l`.to_i
+  puts "# of about files:    #{about_files}"
+  puts "# of about requires: #{about_requires}"
+end
+
