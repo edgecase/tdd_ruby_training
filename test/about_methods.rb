@@ -15,34 +15,82 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, result
   end
 
-  # (NOTE: Using eval because the above is a SYNTAX error)
-  #
-  # Ruby doesn't know if you mean:
-  #
-  #   assert_equal(5, my_global_method(2), 3)
-  # or
-  #   assert_equal(5, my_global_method(2, 3))
-  #
-  # Rewrite the eval string to continue.
-  #
+  # (NOTE: We are Using eval below because the example code is
+  # considered to be syntactically invalid).
   def test_sometimes_missing_parenthesis_are_ambiguous
     eval "assert_equal 5, my_global_method 2, 3"
+    #
+    # Ruby doesn't know if you mean:
+    #
+    #   assert_equal(5, my_global_method(2), 3)
+    # or
+    #   assert_equal(5, my_global_method(2, 3))
+    #
+    # Rewrite the eval string to continue.
+    #
   end
-
-
+  
   # NOTE: wrong number of argument is not a SYNTAX error, but a
   # runtime error.
   def test_calling_global_methods_with_wrong_number_of_arguments
-    exception = assert_raise(ArgumentError) do
+    exception = assert_raise(___) do
       my_global_method
     end
     assert_equal __, exception.message
 
-    exception = assert_raise(ArgumentError) do
+    exception = assert_raise(___) do
       my_global_method(1,2,3)
     end
     assert_equal __, exception.message
   end
+
+  # ------------------------------------------------------------------
+
+  def method_with_defaults(a, b=:default_value)
+    [a, b]
+  end
+
+  def test_calling_with_default_values
+    assert_equal [1, __], method_with_defaults(1)
+    assert_equal [1, __], method_with_defaults(1, 2)
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_with_var_args(*args)
+    args
+  end
+
+  def test_calling_with_variable_arguments
+    assert_equal __, method_with_var_args
+    assert_equal __, method_with_var_args(:one)
+    assert_equal __, method_with_var_args(:one, :two)
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_with_explicit_return
+    :a_non_return_value
+    return :return_value
+    :anoher_non_return_value
+  end
+
+  def test_method_with_explicit_return
+    assert_equal __, method_with_explicit_return
+  end
+
+  # ------------------------------------------------------------------
+
+  def method_without_explicit_return
+    :a_non_return_value
+    :return_value
+  end
+
+  def test_method_without_explicit_return
+    assert_equal __, method_without_explicit_return
+  end
+
+  # ------------------------------------------------------------------
 
   def my_same_class_method(a, b)
     a * b
@@ -56,6 +104,8 @@ class AboutMethods < CodeMash::Koan
     assert_equal __, self.my_same_class_method(3,4)
   end
 
+  # ------------------------------------------------------------------
+
   def my_private_method
     "a secret"
   end
@@ -66,11 +116,13 @@ class AboutMethods < CodeMash::Koan
   end
 
   def test_calling_private_methods_with_an_explicit_receiver
-    exception = assert_raise(NoMethodError) do
+    exception = assert_raise(___) do
       self.my_private_method
     end
     assert_match /__/, exception.message
   end
+
+  # ------------------------------------------------------------------
 
   class Dog
     def name
@@ -91,7 +143,7 @@ class AboutMethods < CodeMash::Koan
 
   def test_calling_private_methods_in_other_objects
     rover = Dog.new
-    assert_raise(NoMethodError) do
+    assert_raise(___) do
       rover.tail
     end
   end
