@@ -5,6 +5,10 @@ class AboutModules < CodeMash::Koan
     def set_name(new_name)
       @name = new_name
     end
+
+    def here
+      :in_module
+    end
   end
 
   def test_cant_instantiate_modules
@@ -27,6 +31,10 @@ class AboutModules < CodeMash::Koan
     def bark
       "WOOF"
     end
+
+    def here
+      :in_object
+    end
   end
 
   def test_normal_methods_are_available_in_the_object
@@ -47,5 +55,9 @@ class AboutModules < CodeMash::Koan
     fido.set_name("Rover")
     assert_equal __, fido.name
   end
-  
+
+  def test_classes_can_override_module_methods
+    fido = Dog.new
+    assert_equal __, fido.here
+  end
 end
