@@ -23,7 +23,7 @@ class AboutNil < CodeMash::Koan
     #    obj.nil?
     # or
     #    obj == nil
-    # ?
+    # Why?
   end
 
 end
