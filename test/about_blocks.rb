@@ -16,6 +16,8 @@ class AboutBlocks < CodeMash::Koan
     assert_equal __, yielded_result
   end
 
+  # ------------------------------------------------------------------
+
   def method_with_block_arguments
     yield("Jim")
   end
@@ -25,6 +27,8 @@ class AboutBlocks < CodeMash::Koan
       assert_equal __, argument
     end
   end
+
+  # ------------------------------------------------------------------
 
   def many_yields
     yield(:peanut)
@@ -39,6 +43,8 @@ class AboutBlocks < CodeMash::Koan
     assert_equal __, result
   end
 
+  # ------------------------------------------------------------------
+
   def yield_tester
     if block_given?
       yield
@@ -51,6 +57,8 @@ class AboutBlocks < CodeMash::Koan
     assert_equal __, yield_tester { :with_block }
     assert_equal __, yield_tester
   end
+
+  # ------------------------------------------------------------------
 
   def test_block_can_effect_variables_in_the_code_where_they_are_created
     value = :initial_value
@@ -71,6 +79,8 @@ class AboutBlocks < CodeMash::Koan
     result = method_with_block_arguments(&make_upper)
     assert_equal __, result    
   end
+
+  # ------------------------------------------------------------------
 
   def method_with_explict_block(&block)
     block.call(10)
