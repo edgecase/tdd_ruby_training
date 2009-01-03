@@ -54,4 +54,41 @@ class AboutInheritance < CodeMash::Koan
     assert_equal __, fido.bark
   end
 
+  # ------------------------------------------------------------------
+
+  class BullDog < Dog
+    def bark
+      super + ", GROWL"
+    end
+
+    def growl
+      super.bark + ", GROWL"
+    end
+  end
+
+  def test_subclasses_can_invoke_parent_behavior_via_super
+    ralph = BullDog.new("Ralph")
+    assert_equal __, ralph.bark
+  end
+
+  def test_super_does_not_work_cross_method
+    ralph = BullDog.new("Ralph")
+    
+  end
+
+  # ------------------------------------------------------------------
+
+  class GreatDane < Dog
+    def growl
+      super.bark + ", GROWL"
+    end
+  end
+
+  def test_super_does_not_work_cross_method
+    george = GreatDane.new("George")
+    assert_raise(___) do
+      george.growl
+    end
+  end
+
 end
