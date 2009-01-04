@@ -103,4 +103,29 @@ class AboutStrings < CodeMash::Koan
     string = 'The value is #{value}'
     assert_equal __, string
   end
+
+  def test_any_ruby_expression_my_be_interpolated
+    string = "The square root of 5 is #{Math.sqrt(5)}"
+    assert_equal __, string
+  end
+
+  def test_you_can_get_a_substring_from_a_string
+    string = "Bacon, lettuce and tomato"
+    assert_equal __, string[7,3]
+    assert_equal __, string[7..9]
+  end
+
+  def test_you_can_get_a_single_character_from_a_string
+    string = "Bacon, lettuce and tomato"
+    assert_equal __, string[1]
+
+    # Surprised?
+  end
+
+  def test_single_characters_are_represented_by_integers
+    assert_equal __, ?a
+    assert_equal __, ?a == 97
+
+    assert_equal __, ?b == (?a + 1)
+  end
 end
