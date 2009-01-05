@@ -4,7 +4,7 @@ def score(dice)
   # You need to write this method
 end
 
-class AboutScoringAssignment
+class AboutScoringAssignment < CodeMash::Koan
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end
