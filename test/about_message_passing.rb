@@ -70,8 +70,6 @@ class AboutMessagePassing < CodeMash::Koan
     
     assert_equals :called , mc.__  
     assert_equals :called , mc.__
-    assert_equals true    , mc.__     
-    assert_equals :empty  , mc.__
   end
   
   def test_using_method_missing_need_to_account_for_all_cases
