@@ -69,7 +69,7 @@ class AboutMessagePassing < CodeMash::Koan
     mc = MessageCatcher.new
     
     assert_equals :called , mc.__  
-    assert_equals :called , mc.__
+    assert_equals :called , mc.__ 
   end
   
   def test_using_method_missing_need_to_account_for_all_cases
