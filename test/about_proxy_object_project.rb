@@ -28,13 +28,13 @@ end
 
 class AboutProxyObjectProject < CodeMash::Koan
   def test_proxy_method_returns_wrapped_object  
-    tv = proxy(Television)    
+    tv = proxy(Television.new)
     
     assert tv.instance_of?(Proxy)
   end
   
   def test_methods_still_perform_their_function
-    tv = proxy(Television)
+    tv = proxy(Television.new)
     
     tv.channel 10
     tv.power
@@ -44,16 +44,16 @@ class AboutProxyObjectProject < CodeMash::Koan
   end
 
   def test_proxy_records_messages
-    tv = proxy(Television)
+    tv = proxy(Television.new)
     
     tv.power
     tv.channel 10
     
-    assert_equal [:new, :power, :channel] , tv.messages
+    assert_equal [:power, :channel] , tv.messages
   end
   
   def test_proxy_handles_invalid_messages
-    tv = proxy(Television)
+    tv = proxy(Television.new)
     
     assert_raise(NoMethodError) do
       tv.no_such_method
@@ -61,7 +61,7 @@ class AboutProxyObjectProject < CodeMash::Koan
   end
   
   def test_proxy_reports_methods_have_been_called
-    tv = proxy(Television)
+    tv = proxy(Television.new)
     
     tv.power
     tv.power
@@ -71,7 +71,7 @@ class AboutProxyObjectProject < CodeMash::Koan
   end
   
   def test_proxy_counts_method_calls
-    tv = proxy(Television)
+    tv = proxy(Television.new)
     
     tv.power
     tv.power
