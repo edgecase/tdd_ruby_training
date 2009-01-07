@@ -7,8 +7,8 @@ SRC_DIR='test'
 SRC_FILES = FileList["#{SRC_DIR}/*.rb"]
 
 DIST_DIR='dist'
-TAR_FILE = "#{DIST_DIR}/ruby101.tgz"
-ZIP_FILE = "#{DIST_DIR}/ruby101.zip"
+TAR_FILE = "#{DIST_DIR}/rubykoans.tgz"
+ZIP_FILE = "#{DIST_DIR}/rubykoans.zip"
 
 CLOBBER.include(DIST_DIR)
 
