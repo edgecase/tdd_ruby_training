@@ -17,8 +17,24 @@ class Television
 end
 
 class Proxy
+  attr_reader :messages
+
   def initialize(object)
     @object = object
+    @messages = []
+  end
+
+  def method_missing(sym, *args, &block)
+    @messages << sym
+    @object.__send__(sym, *args, &block)
+  end
+
+  def called?(sym)
+    number_of_times_called(sym) > 0
+  end
+
+  def number_of_times_called(sym)
+    @messages.select { |s| s == sym }.size
   end
 end
 
@@ -49,7 +65,7 @@ class AboutProxyObjectProject < CodeMash::Koan
     tv.power
     tv.channel = 10
     
-    assert_equal [:power, :channel] , tv.messages
+    assert_equal [:power, :channel=], tv.messages
   end
   
   def test_proxy_handles_invalid_messages
@@ -78,7 +94,7 @@ class AboutProxyObjectProject < CodeMash::Koan
     tv.power
 
     assert_equal 2, tv.number_of_times_called(:power)
-    assert_equal 1, tv.number_of_times_called(:channel)
+    assert_equal 1, tv.number_of_times_called(:channel=)
     assert_equal 0, tv.number_of_times_called(:on?)
   end
 
