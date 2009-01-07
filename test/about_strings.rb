@@ -27,6 +27,30 @@ class AboutStrings < CodeMash::Koan
     assert_equal __, a == b
   end
 
+  def test_use_flexible_quoting_to_handle_really_hard_cases
+    a = %(flexible quotes can handle both ' and " characters)
+    b = %!flexible quotes can handle both ' and " characters!
+    c = %{flexible quotes can handle both ' and " characters}
+    assert_equal __, a == b
+    assert_equal __, a == c
+  end
+
+  def test_flexible_quotes_can_handle_multiple_lines
+    long_string = %{
+It was the best of times,
+It was the worst of times.
+}
+    assert_equal __, long_string.size
+  end
+
+  def test_here_documents_can_also_handle_multiple_lines
+    long_string = <<EOS
+It was the best of times,
+It was the worst of times.
+EOS
+    assert_equal __, long_string.size
+  end
+
   def test_plus_will_concatenate_two_strings
     string = "Hello, " + "World"
     assert_equal __, string
@@ -127,5 +151,26 @@ class AboutStrings < CodeMash::Koan
     assert_equal __, ?a == 97
 
     assert_equal __, ?b == (?a + 1)
+  end
+
+  def test_strings_can_be_split
+    string = "Sausage Egg Cheese"
+    words = string.split
+    assert_equal [__, __, __], words
+  end
+
+  def test_strings_can_be_split_with_different_patterns
+    string = "the:rain:in:spain"
+    words = string.split(/:/)
+    assert_equal [__, __, __, __], words
+
+    # NOTE: Patterns are formed from Regular Expressions.  Ruby has a
+    # very powerful Regular Expression library.  Unfortunately, time
+    # does not permit us to explore it in detail in Ruby 101.
+  end
+
+  def test_strings_can_be_joined
+    words = ["Now", "is", "the", "time"]
+    assert_equal __, words.join(" ")
   end
 end
