@@ -3,7 +3,7 @@
 
 require 'rake/clean'
 
-SRC_DIR='test'
+SRC_DIR='koans'
 SRC_FILES = FileList["#{SRC_DIR}/*.rb"]
 
 DIST_DIR='dist'
