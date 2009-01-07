@@ -15,7 +15,7 @@ CLOBBER.include(DIST_DIR)
 directory DIST_DIR
 
 file ZIP_FILE => SRC_FILES + [DIST_DIR] do
-  sh "zip #{DIST_DIR}/ruby101.zip #{SRC_DIR}/*"
+  sh "zip #{ZIP_FILE} #{SRC_DIR}/*"
 end
 
 file TAR_FILE => SRC_FILES + [DIST_DIR] do
