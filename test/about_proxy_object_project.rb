@@ -1,5 +1,99 @@
 require 'code_mash'
 
+# Project: Create a Proxy Class
+#
+# In this assignment, create a proxy class (one is started for you
+# below).  You should be able to initialize the proxy object with any
+# object.  Any messages sent to the proxy object should be forwarded
+# to the target object.  As each message is sent, the proxy should
+# record the name of the method send.
+#
+# The proxy class is started for you.  You will need to add a method
+# missing handler and any other supporting methods.  The specification
+# of the Proxy class is given in the AboutProxyObjectProject koan.
+
+class Proxy
+  def initialize(target_object)
+    @object = target_object
+  end
+end
+
+# The proxy object should pass the following Koan:
+#
+class AboutProxyObjectProject < CodeMash::Koan
+  def test_proxy_method_returns_wrapped_object  
+    tv = Proxy.new(Television.new)
+    
+    assert tv.instance_of?(Proxy)
+  end
+  
+  def test_tv_methods_still_perform_their_function
+    tv = Proxy.new(Television.new)
+    
+    tv.channel = 10
+    tv.power
+    
+    assert_equal 10, tv.channel
+    assert tv.on?
+  end
+
+  def test_proxy_records_messages_sent_to_tv
+    tv = Proxy.new(Television.new)
+    
+    tv.power
+    tv.channel = 10
+    
+    assert_equal [:power, :channel=], tv.messages
+  end
+  
+  def test_proxy_handles_invalid_messages
+    tv = Proxy.new(Television.new)
+    
+    assert_raise(NoMethodError) do
+      tv.no_such_method
+    end
+  end
+  
+  def test_proxy_reports_methods_have_been_called
+    tv = Proxy.new(Television.new)
+    
+    tv.power
+    tv.power
+    
+    assert tv.called?(:power)
+    assert ! tv.called?(:channel)
+  end
+  
+  def test_proxy_counts_method_calls
+    tv = Proxy.new(Television.new)
+    
+    tv.power
+    tv.channel = 48
+    tv.power
+
+    assert_equal 2, tv.number_of_times_called(:power)
+    assert_equal 1, tv.number_of_times_called(:channel=)
+    assert_equal 0, tv.number_of_times_called(:on?)
+  end
+
+  def test_proxy_can_record_more_than_just_tv_objects
+    proxy = Proxy.new("Code Mash 2009")
+
+    proxy.upcase!
+    result = proxy.split
+
+    assert_equal ["Code", "Mash", "2009"], result
+    assert_equal [:upcase!, :split], proxy.messages
+  end
+
+end
+
+
+# ====================================================================
+# The following code is to support the testing of the Proxy class.  No
+# changes should be necessary to anything below this comment.
+
+# Example class using in the proxy testing above.
 class Television
   attr_accessor :channel
   
@@ -16,92 +110,7 @@ class Television
   end
 end
 
-class Proxy
-  attr_reader :messages
-
-  def initialize(object)
-    @object = object
-    @messages = []
-  end
-
-  def method_missing(sym, *args, &block)
-    @messages << sym
-    @object.__send__(sym, *args, &block)
-  end
-
-  def called?(sym)
-    number_of_times_called(sym) > 0
-  end
-
-  def number_of_times_called(sym)
-    @messages.select { |s| s == sym }.size
-  end
-end
-
-def proxy(object)
-  Proxy.new(object)
-end
-
-class AboutProxyObjectProject < CodeMash::Koan
-  def test_proxy_method_returns_wrapped_object  
-    tv = proxy(Television.new)
-    
-    assert tv.instance_of?(Proxy)
-  end
-  
-  def test_methods_still_perform_their_function
-    tv = proxy(Television.new)
-    
-    tv.channel = 10
-    tv.power
-    
-    assert_equal 10, tv.channel
-    assert tv.on?
-  end
-
-  def test_proxy_records_messages
-    tv = proxy(Television.new)
-    
-    tv.power
-    tv.channel = 10
-    
-    assert_equal [:power, :channel=], tv.messages
-  end
-  
-  def test_proxy_handles_invalid_messages
-    tv = proxy(Television.new)
-    
-    assert_raise(NoMethodError) do
-      tv.no_such_method
-    end
-  end
-  
-  def test_proxy_reports_methods_have_been_called
-    tv = proxy(Television.new)
-    
-    tv.power
-    tv.power
-    
-    assert tv.called?(:power)
-    assert ! tv.called?(:channel)
-  end
-  
-  def test_proxy_counts_method_calls
-    tv = proxy(Television.new)
-    
-    tv.power
-    tv.channel = 48
-    tv.power
-
-    assert_equal 2, tv.number_of_times_called(:power)
-    assert_equal 1, tv.number_of_times_called(:channel=)
-    assert_equal 0, tv.number_of_times_called(:on?)
-  end
-
-end
-
-
-# Nothing needs to be done with this test
+# Tests for the Television class.  All of theses tests should pass.
 class TelevisionTest < CodeMash::Koan
   def test_it_turns_on
     tv = Television.new
