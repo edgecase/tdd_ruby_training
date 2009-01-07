@@ -36,10 +36,10 @@ class AboutProxyObjectProject < CodeMash::Koan
   def test_methods_still_perform_their_function
     tv = proxy(Television.new)
     
-    tv.channel 10
+    tv.channel = 10
     tv.power
     
-    assert_equal 10, tv.power
+    assert_equal 10, tv.channel
     assert tv.on?
   end
 
@@ -114,5 +114,12 @@ class TelevisionTest < CodeMash::Koan
     tv.power
     
     assert ! tv.on?
+  end
+
+  def test_can_set_the_channel
+    tv = Television.new
+
+    tv.channel = 11
+    assert_equal 11, tv.channel
   end
 end
