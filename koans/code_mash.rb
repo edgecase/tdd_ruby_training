@@ -189,7 +189,7 @@ module CodeMash
       end
 
       def test_pattern
-        @test_pattern ||= /./
+        @test_pattern ||= /^test_/
       end
 
     end
