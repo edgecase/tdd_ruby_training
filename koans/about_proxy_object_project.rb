@@ -21,7 +21,8 @@ end
 # The proxy object should pass the following Koan:
 #
 class AboutProxyObjectProject < CodeMash::Koan
-  def test_proxy_method_returns_wrapped_object  
+  def test_proxy_method_returns_wrapped_object
+    # NOTE: The Television class is defined below
     tv = Proxy.new(Television.new)
     
     assert tv.instance_of?(Proxy)
