@@ -47,7 +47,7 @@ class AboutProxyObjectProject < CodeMash::Koan
     tv = proxy(Television.new)
     
     tv.power
-    tv.channel 10
+    tv.channel = 10
     
     assert_equal [:power, :channel] , tv.messages
   end
@@ -74,10 +74,11 @@ class AboutProxyObjectProject < CodeMash::Koan
     tv = proxy(Television.new)
     
     tv.power
+    tv.channel = 48
     tv.power
 
     assert_equal 2, tv.number_of_times_called(:power)
-    assert_equal 1, tv.number_of_times_called(:new)
+    assert_equal 1, tv.number_of_times_called(:channel)
     assert_equal 0, tv.number_of_times_called(:on?)
   end
 
