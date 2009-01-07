@@ -14,7 +14,7 @@ class AboutUsingBlocks < CodeMash::Koan
   end
 
   def test_counting_lines
-    assert_equal __, count_lines_in_a_file("example_file.txt")
+    assert_equal __, count_lines("example_file.txt")
   end
 
   # ------------------------------------------------------------------
