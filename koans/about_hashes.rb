@@ -50,7 +50,7 @@ class AboutHashes < CodeMash::Koan
 
     assert_not_equal hash, new_hash
     
-    expected = { "jim" => __, "amy" => 30, "dan" => 23, "jenny" => __ }
+    expected = { "jim" => __, "amy" => 20, "dan" => 23, "jenny" => __ }
     assert_equal expected, new_hash
   end
 end
