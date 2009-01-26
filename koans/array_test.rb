@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArrayTest < CodeMash::TestCase
+class ArrayTest < EdgeCase::TestCase
 
   def test_basic_arrays
     food = [:peanut, :button, :and, :jelly]

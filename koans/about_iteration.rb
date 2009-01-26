@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutIteration < CodeMash::Koan
+class AboutIteration < EdgeCase::Koan
 
   def test_each_is_a_method_on_arrays
     [].methods.include?("each")

@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutControlStatements < CodeMash::Koan
+class AboutControlStatements < EdgeCase::Koan
 
   def test_if_then_else_statements
     if true

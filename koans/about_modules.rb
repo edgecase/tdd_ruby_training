@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutModules < CodeMash::Koan
+class AboutModules < EdgeCase::Koan
   module Nameable
     def set_name(new_name)
       @name = new_name

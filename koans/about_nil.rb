@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutNil < CodeMash::Koan
+class AboutNil < EdgeCase::Koan
   def test_nil_is_an_object
     assert nil.is_a?(Object), "Unlike NULL in other languages"
   end

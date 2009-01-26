@@ -1,9 +1,9 @@
-require 'code_mash'
+require 'edgecase'
 
 # You need to write the triangle method in the file 'triangle.rb'
 require 'triangle.rb'
 
-class AboutTriangleAssignment < CodeMash::Koan
+class AboutTriangleAssignment < EdgeCase::Koan
   # The first assignment did not talk about how to handle errors.
   # Let's handle that part now.
   def test_illegal_triangles_throw_exceptions

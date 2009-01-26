@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutClassMethods < CodeMash::Koan
+class AboutClassMethods < EdgeCase::Koan
   class Dog
   end
 

@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutMessagePassing < CodeMash::Koan
+class AboutMessagePassing < EdgeCase::Koan
   
   class MessageCatcher
     def caught?

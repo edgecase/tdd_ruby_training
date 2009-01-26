@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutScope < CodeMash::Koan
+class AboutScope < EdgeCase::Koan
   module Jims
     class Dog
       def identify

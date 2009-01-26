@@ -1,4 +1,4 @@
-require 'code_mash'
+require 'edgecase'
 
 # Greed is a dice game where you roll up to five dice to accumulate
 # points.  The following "score" function will be used calculate the
@@ -33,7 +33,7 @@ def score(dice)
   # You need to write this method
 end
 
-class AboutScoringAssignment < CodeMash::Koan
+class AboutScoringAssignment < EdgeCase::Koan
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end

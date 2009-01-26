@@ -1,10 +1,10 @@
-require 'code_mash'
+require 'edgecase'
 
 def my_global_method(a,b)
   a + b
 end
   
-class AboutMethods < CodeMash::Koan
+class AboutMethods < EdgeCase::Koan
 
   def test_calling_global_methods
     assert_equal __, my_global_method(2,3)

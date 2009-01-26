@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # -*- ruby -*-
 
-require 'code_mash'
+require 'edgecase'
 
-class AboutAsserts < CodeMash::Koan
+class AboutAsserts < EdgeCase::Koan
 
   # We shall contemplate truth by testing reality, via asserts.
   def test_assert_truth

@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutStrings < CodeMash::Koan
+class AboutStrings < EdgeCase::Koan
   def test_double_quoted_strings_are_strings
     string = "Hello, World"
     assert_equal __, string.is_a?(String)

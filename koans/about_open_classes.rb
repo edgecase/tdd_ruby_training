@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutOpenClasses < CodeMash::Koan
+class AboutOpenClasses < EdgeCase::Koan
   class Dog
     def bark
       "WOOF"

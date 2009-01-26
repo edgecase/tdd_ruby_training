@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutUsingBlocks < CodeMash::Koan
+class AboutUsingBlocks < EdgeCase::Koan
 
   def count_lines(file_name)
     file = open(file_name)

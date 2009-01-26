@@ -1,4 +1,4 @@
-require 'code_mash'
+require 'edgecase'
 
 class DiceSet
   attr_reader :values
@@ -7,7 +7,7 @@ class DiceSet
   end
 end
 
-class AboutDiceSet < CodeMash::Koan
+class AboutDiceSet < EdgeCase::Koan
   def test_can_create_a_dice_set
     dice = DiceSet.new
     assert_not_nil dice

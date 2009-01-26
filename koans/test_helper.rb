@@ -4,4 +4,4 @@ def __
   "FILL ME IN"
 end
 
-CodeMash = Test::Unit
+EdgeCase = Test::Unit

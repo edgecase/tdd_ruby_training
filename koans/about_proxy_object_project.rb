@@ -1,4 +1,4 @@
-require 'code_mash'
+require 'edgecase'
 
 # Project: Create a Proxy Class
 #
@@ -20,7 +20,7 @@ end
 
 # The proxy object should pass the following Koan:
 #
-class AboutProxyObjectProject < CodeMash::Koan
+class AboutProxyObjectProject < EdgeCase::Koan
   def test_proxy_method_returns_wrapped_object
     # NOTE: The Television class is defined below
     tv = Proxy.new(Television.new)
@@ -111,7 +111,7 @@ class Television
 end
 
 # Tests for the Television class.  All of theses tests should pass.
-class TelevisionTest < CodeMash::Koan
+class TelevisionTest < EdgeCase::Koan
   def test_it_turns_on
     tv = Television.new
     

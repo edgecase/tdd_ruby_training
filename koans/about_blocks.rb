@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutBlocks < CodeMash::Koan
+class AboutBlocks < EdgeCase::Koan
   def method_with_block
     result = yield
     result

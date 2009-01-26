@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutHashes < CodeMash::Koan
+class AboutHashes < EdgeCase::Koan
   def test_creating_hashes
     empty_hash = Hash.new
     assert_equal Hash, empty_hash.class

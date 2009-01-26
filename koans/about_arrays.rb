@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutArrays < CodeMash::Koan
+class AboutArrays < EdgeCase::Koan
   def test_creating_arrays
     empty_array = Array.new
     assert_equal Array, empty_array.class

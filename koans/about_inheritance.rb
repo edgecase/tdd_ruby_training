@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutInheritance < CodeMash::Koan
+class AboutInheritance < EdgeCase::Koan
   class Dog
     attr_reader :name
 

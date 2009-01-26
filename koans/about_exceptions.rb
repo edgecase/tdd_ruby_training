@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutExceptions < CodeMash::Koan
+class AboutExceptions < EdgeCase::Koan
 
   class MySpecialError < RuntimeError
   end

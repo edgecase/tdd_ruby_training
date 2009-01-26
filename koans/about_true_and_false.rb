@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutTrueAndFalse < CodeMash::Koan
+class AboutTrueAndFalse < EdgeCase::Koan
   def truth_value(condition)
     if condition
       :true_stuff
