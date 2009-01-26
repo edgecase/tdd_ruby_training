@@ -1,6 +1,6 @@
-require 'code_mash'
+require 'edgecase'
 
-class AboutArrayAssignment < CodeMash::Koan
+class AboutArrayAssignment < EdgeCase::Koan
   def test_non_parallel_assignment
     names = ["John", "Smith"]
     assert_equal __, names
