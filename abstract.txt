@@ -24,6 +24,3 @@ the form of a test suite, to take home and build upon, and a hunger to
 learn more and join the growing community of ruby developers.
 
 Bring you laptop, a sense of humor, and an open mind. 
-
-
-

@@ -3,12 +3,12 @@ require 'edgecase'
 class AboutStrings < EdgeCase::Koan
   def test_double_quoted_strings_are_strings
     string = "Hello, World"
-    assert_equal __, string.is_a?(String)
+    assert_equal __(true), string.is_a?(String)
   end
 
   def test_single_quoted_strings_are_also_strings
     string = 'Goodbye, World'
-    assert_equal __, string.is_a?(String)
+    assert_equal __(true), string.is_a?(String)
   end
 
   def test_use_single_quotes_to_create_string_with_double_quotes
