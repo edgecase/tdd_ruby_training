@@ -6,7 +6,6 @@ class AboutNil < EdgeCase::Koan
   end
 
   def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil
-    exception = assert_raise(___) do
     #
     #  What is the Exception that is thrown when you call a method that
     #  does not exist?  
@@ -20,7 +19,6 @@ class AboutNil < EdgeCase::Koan
     #  variable.  
     #
     exception = assert_raise(___) do
-    exception = assert_raise(___ do
       nil.some_method_nil_doesnt_know_about
     end
     assert_match /__/, exception.message
@@ -30,7 +28,6 @@ class AboutNil < EdgeCase::Koan
     #  you test against in order to have a good idea what the string is?
     #  
     assert_match /__/, exception.message
-    assert_match /#{__}/, exception.message
   end
 
   def test_nil_has_a_few_methods_defined_on_it
