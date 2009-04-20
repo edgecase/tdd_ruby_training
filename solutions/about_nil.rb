@@ -20,7 +20,7 @@ class AboutNil < EdgeCase::Koan
     #  variable.  
     #
     exception = assert_raise(___) do
-    exception = assert_raise(___ do
+    exception = assert_raise(___(NoMethodError)) do
       nil.some_method_nil_doesnt_know_about
     end
     assert_match /__/, exception.message
@@ -30,13 +30,13 @@ class AboutNil < EdgeCase::Koan
     #  you test against in order to have a good idea what the string is?
     #  
     assert_match /__/, exception.message
-    assert_match /#{__}/, exception.message
+    assert_match /#{__('undefined method')}/, exception.message
   end
 
   def test_nil_has_a_few_methods_defined_on_it
-    assert_equal __, nil.nil?
-    assert_equal __, nil.to_s
-    assert_equal __, nil.inspect
+    assert_equal __(true), nil.nil?
+    assert_equal __(""), nil.to_s
+    assert_equal __("nil"), nil.inspect
 
     # THINK ABOUT IT:
     #

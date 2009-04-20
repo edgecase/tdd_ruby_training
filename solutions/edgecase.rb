@@ -6,11 +6,11 @@ require 'test/unit/assertions'
 class FillMeInError < StandardError
 end
 
-def __
+def __(value="FILL ME IN")
   value
 end
 
-def ___
+def ___(value=FillMeInError)
   value
 end
 
