@@ -48,7 +48,6 @@ task :upload => [TAR_FILE, ZIP_FILE] do
   sh "scp #{ZIP_FILE} linode:sites/onestepback.org/download"
 end
 
-
 desc "Check that the require files match the about_* files"
 task :check do
   about_files = Dir['about_*.rb'].size
