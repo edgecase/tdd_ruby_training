@@ -49,10 +49,6 @@ module Koans
   end
 end
 
-task :dbg do
-  puts "KOAN: #{SRC_PROB_FILES}"
-end
-
 directory DIST_DIR
 directory PROB_DIR
 directory SOLUTION_DIR
@@ -76,13 +72,14 @@ end
 
 desc "Check that the require files match the about_* files"
 task :check do
-  about_files = Dir['about_*.rb'].size
-  about_requires = `grep require path_to_enlightenment.rb | wc -l`.to_i
+  about_files = Dir['src/about_*.rb'].size
+  about_requires = `grep require src/path_to_enlightenment.rb | wc -l`.to_i
   puts "# of about files:    #{about_files}"
   puts "# of about requires: #{about_requires}"
 end
 
-task :koan => KOAN_FILES 
+task :regen => [:clobber_koans, :gen]
+task :gen => KOAN_FILES 
 task :clobber_koans do
   rm_r PROB_DIR
 end
