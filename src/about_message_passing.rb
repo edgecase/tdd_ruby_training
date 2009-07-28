@@ -96,16 +96,16 @@ class AboutMessagePassing < EdgeCase::Koan
 
   class AllMessageCatcher
     def method_missing(method_name, *args, &block)
-      "Someone called #{method_name} with (#{args.join(", ")})"
+      "Someone called #{method_name} with <#{args.join(", ")}>"
     end
   end
 
   def test_all_messages_are_caught
     catcher = AllMessageCatcher.new
 
-    assert_equal __("Someone called foobar with ()"), catcher.foobar
-    assert_equal __("Someone called foobaz with (1)"), catcher.foobaz(1)
-    assert_equal __("Someone called sum with (1, 2, 3, 4, 5, 6)"), catcher.sum(1,2,3,4,5,6)
+    assert_equal __("Someone called foobar with <>"), catcher.foobar
+    assert_equal __("Someone called foobaz with <1>"), catcher.foobaz(1)
+    assert_equal __("Someone called sum with <1, 2, 3, 4, 5, 6>"), catcher.sum(1,2,3,4,5,6)
   end
 
   def test_catching_messages_makes_respond_to_lie

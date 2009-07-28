@@ -25,7 +25,7 @@ class AboutMessagePassing < EdgeCase::Koan
     
     assert mc.send("caught?")
     assert mc.send("caught" + __ )    # What do you need to add to the first string?
-    assert mc.send("CAUGHT?".__ )      # What would you need to do to the string?
+    assert mc.send("CAUGHT?".____ )      # What would you need to do to the string?
   end
 
   def test_send_with_underscores_will_also_send_messages
@@ -72,7 +72,7 @@ class AboutMessagePassing < EdgeCase::Koan
   def test_sending_undefined_messages_to_a_typical_object_results_in_errors
     typical = TypicalObject.new
 
-    assert_raise(___) do
+    exception = assert_raise(___) do
       typical.foobar
     end
     assert_match(/foobar/, exception.message)
@@ -96,7 +96,7 @@ class AboutMessagePassing < EdgeCase::Koan
 
   class AllMessageCatcher
     def method_missing(method_name, *args, &block)
-      "Someone called #{method_name} with (#{args.join(", ")})"
+      "Someone called #{method_name} with <#{args.join(", ")}>"
     end
   end
 

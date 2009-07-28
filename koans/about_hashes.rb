@@ -41,16 +41,16 @@ class AboutHashes < EdgeCase::Koan
   def test_hash_keys
     hash = { :one => "uno", :two => "dos" }
     assert_equal __, hash.keys.size
-    assert_equal __
-    assert_equal __
+    assert_equal __, hash.keys.include?(:one)
+    assert_equal __, hash.keys.include?(:two)
     assert_equal Array, hash.keys.class
   end
 
   def test_hash_values
     hash = { :one => "uno", :two => "dos" }
     assert_equal __, hash.keys.size
-    assert_equal __
-    assert_equal __
+    assert_equal __, hash.values.include?("uno")
+    assert_equal __, hash.values.include?("dos")
     assert_equal Array, hash.values.class
   end
 
@@ -60,7 +60,7 @@ class AboutHashes < EdgeCase::Koan
 
     assert_not_equal hash, new_hash
     
-    expected = { "jim" => __ }
+    expected = { "jim" => __, "amy" => 20, "dan" => 23, "jenny" => __ }
     assert_equal expected, new_hash
   end
 end
