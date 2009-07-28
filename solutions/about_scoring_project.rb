@@ -31,6 +31,27 @@ require 'edgecase'
 
 def score(dice)
   # You need to write this method
+  #--
+  result = 0
+  (1..6).each do |face|
+    count = dice.select { |n| n == face }.size
+    while count > 0
+      if count >= 3
+        result += (face == 1) ? 1000 : 100 * face
+        count -= 3
+      elsif face == 5
+        result += count * 50
+        count = 0
+      elsif face == 1
+        result += count * 100
+        count = 0
+      else
+        count = 0
+      end
+    end
+  end
+  result
+  #++
 end
 
 class AboutScoringAssignment < EdgeCase::Koan
@@ -47,7 +68,7 @@ class AboutScoringAssignment < EdgeCase::Koan
   end
 
   def test_score_of_mulitple_1s_and_5s_is_the_sum
-    assert_equal 200, score([1,5,5,1])
+    assert_equal 300, score([1,5,5,1])
   end
 
   def test_score_of_single_2s_3s_4s_and_6s_are_zero

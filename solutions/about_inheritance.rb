@@ -24,23 +24,23 @@ class AboutInheritance < EdgeCase::Koan
   end
 
   def test_subclasses_have_the_parent_as_an_ancestor
-    assert_equal __, Chihuahua.ancestors.include?(Dog)
+    assert_equal __(true), Chihuahua.ancestors.include?(Dog)
   end
 
   def test_all_classes_ultimately_inherit_from_object
-    assert_equal __, Chihuahua.ancestors.include?(Object)
+    assert_equal __(true), Chihuahua.ancestors.include?(Object)
   end
 
   def test_subcases_inherit_behavior_from_parent_class
     chico = Chihuahua.new("Chico")
-    assert_equal __, chico.name
+    assert_equal __("Chico"), chico.name
   end
 
   def test_subclasses_add_new_behavior
     chico = Chihuahua.new("Chico")
-    assert_equal __, chico.wag
+    assert_equal __(:happy), chico.wag
 
-    assert_raise(___) do
+    assert_raise(___(NoMethodError)) do
       fido = Dog.new("Fido")
       fido.wag
     end
@@ -48,10 +48,10 @@ class AboutInheritance < EdgeCase::Koan
 
   def test_subclasses_can_modify_existing_behavior
     chico = Chihuahua.new("Chico")
-    assert_equal __, chico.bark
+    assert_equal __("yip"), chico.bark
 
     fido = Dog.new("Fido")
-    assert_equal __, fido.bark
+    assert_equal __("WOOF"), fido.bark
   end
 
   # ------------------------------------------------------------------
@@ -60,20 +60,11 @@ class AboutInheritance < EdgeCase::Koan
     def bark
       super + ", GROWL"
     end
-
-    def growl
-      super.bark + ", GROWL"
-    end
   end
 
   def test_subclasses_can_invoke_parent_behavior_via_super
     ralph = BullDog.new("Ralph")
-    assert_equal __, ralph.bark
-  end
-
-  def test_super_does_not_work_cross_method
-    ralph = BullDog.new("Ralph")
-    
+    assert_equal __("WOOF, GROWL"), ralph.bark
   end
 
   # ------------------------------------------------------------------
@@ -86,7 +77,7 @@ class AboutInheritance < EdgeCase::Koan
 
   def test_super_does_not_work_cross_method
     george = GreatDane.new("George")
-    assert_raise(___) do
+    assert_raise(___(NoMethodError)) do
       george.growl
     end
   end

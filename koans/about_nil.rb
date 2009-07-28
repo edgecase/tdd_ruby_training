@@ -18,16 +18,12 @@ class AboutNil < EdgeCase::Koan
     #  in a sandbox and catching the error class into the exception
     #  variable.  
     #
-    exception = assert_raise(___) do
+    begin
       nil.some_method_nil_doesnt_know_about
+    rescue Exception => ex
+      assert_equal __, ex
+      assert_match(/__/, ex.message)
     end
-    assert_match /__/, exception.message
-    
-    # 
-    #  What is the error message itself? What substring or pattern could 
-    #  you test against in order to have a good idea what the string is?
-    #  
-    assert_match /__/, exception.message
   end
 
   def test_nil_has_a_few_methods_defined_on_it

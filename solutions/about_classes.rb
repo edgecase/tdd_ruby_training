@@ -6,7 +6,7 @@ class AboutClasses < EdgeCase::Koan
 
   def test_instances_of_classes_can_be_created_with_new
     fido = Dog.new
-    assert_equal __, fido.class
+    assert_equal __(Dog), fido.class
   end
 
   # ------------------------------------------------------------------
@@ -19,21 +19,21 @@ class AboutClasses < EdgeCase::Koan
 
   def test_instance_variables_can_be_set_by_assigning_to_them
     fido = Dog2.new
-    assert_equal __, fido.instance_variables
+    assert_equal __([]), fido.instance_variables
 
     fido.set_name("Fido")
-    assert_equal __, fido.instance_variables
+    assert_equal __(["@name"]), fido.instance_variables
   end
 
   def test_instance_variables_cannot_be_accessed_outside_the_class
     fido = Dog2.new
     fido.set_name("Fido")
 
-    assert_raise(___) do
+    assert_raise(___(NoMethodError)) do
       fido.name
     end
 
-    assert_raise(___) do
+    assert_raise(___(SyntaxError)) do
       eval "fido.@name"
       # NOTE: Using eval because the above line is a syntax error.
     end
@@ -43,15 +43,15 @@ class AboutClasses < EdgeCase::Koan
     fido = Dog2.new
     fido.set_name("Fido")
 
-    assert_equal __, fido.instance_variable_get("@name")    
+    assert_equal __("Fido"), fido.instance_variable_get("@name")    
   end
 
   def test_you_can_rip_the_value_out_using_instance_eval
     fido = Dog2.new
     fido.set_name("Fido")
 
-    assert_equal __, fido.instance_eval("@name")  # string version
-    assert_equal __, fido.instance_eval { @name } # block version
+    assert_equal __("Fido"), fido.instance_eval("@name")  # string version
+    assert_equal __("Fido"), fido.instance_eval { @name } # block version
   end
 
   # ------------------------------------------------------------------
@@ -69,7 +69,7 @@ class AboutClasses < EdgeCase::Koan
     fido = Dog3.new
     fido.set_name("Fido")
 
-    assert_equal __, fido.name
+    assert_equal __("Fido"), fido.name
   end
 
   # ------------------------------------------------------------------
@@ -87,7 +87,7 @@ class AboutClasses < EdgeCase::Koan
     fido = Dog4.new
     fido.set_name("Fido")
 
-    assert_equal __, fido.name
+    assert_equal __("Fido"), fido.name
   end
   
   # ------------------------------------------------------------------
@@ -101,7 +101,7 @@ class AboutClasses < EdgeCase::Koan
     fido = Dog5.new
 
     fido.name = "Fido"
-    assert_equal __, fido.name
+    assert_equal __("Fido"), fido.name
   end
 
   # ------------------------------------------------------------------
@@ -115,11 +115,11 @@ class AboutClasses < EdgeCase::Koan
 
   def test_initialize_provides_initial_values_for_instance_variables
     fido = Dog6.new("Fido")
-    assert_equal __, fido.name
+    assert_equal __("Fido"), fido.name
   end
 
   def test_args_to_new_must_match_initialize
-    assert_raise(___) do
+    assert_raise(___(ArgumentError)) do
       Dog6.new
     end
     # THINK ABOUT IT:
@@ -147,7 +147,7 @@ class AboutClasses < EdgeCase::Koan
     end
 
     def to_s
-      __
+      __(@name)
     end
 
     def inspect
@@ -159,7 +159,7 @@ class AboutClasses < EdgeCase::Koan
     fido = Dog7.new("Fido")
 
     fidos_self = fido.get_self
-    assert_equal __, fidos_self
+    assert_equal __(fido), fidos_self
   end
 
   def test_to_s_provides_a_string_version_of_the_object
@@ -174,17 +174,17 @@ class AboutClasses < EdgeCase::Koan
 
   def test_inspect_provides_a_more_complete_string_version
     fido = Dog7.new("Fido")
-    assert_equal __, fido.inspect
+    assert_equal __("<Dog named 'Fido'>"), fido.inspect
   end
 
   def test_all_objects_support_to_s_and_inspect
     array = [1,2,3]
 
-    assert_equal __, array.to_s
-    assert_equal __, array.inspect
+    assert_equal __("123"), array.to_s
+    assert_equal __("[1, 2, 3]"), array.inspect
 
-    assert_equal __, "STRING".to_s
-    assert_equal __, "STRING".inspect
+    assert_equal __("STRING"), "STRING".to_s
+    assert_equal __('"STRING"'), "STRING".inspect
   end
  
 end
