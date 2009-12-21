@@ -2,7 +2,7 @@ require 'edgecase'
 
 class AboutNil < EdgeCase::Koan
   def test_nil_is_an_object
-    assert nil.is_a?(Object), "Unlike NULL in other languages"
+    assert_equal __(true), nil.is_a?(Object), "Unlike NULL in other languages"
   end
 
   def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil
