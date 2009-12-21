@@ -6,10 +6,10 @@ class AboutExceptions < EdgeCase::Koan
   end
 
   def test_exceptions_inherit_from_Exception
-    assert MySpecialError.ancestors.include?(RuntimeError)
-    assert MySpecialError.ancestors.include?(StandardError)
-    assert MySpecialError.ancestors.include?(Exception)
-    assert MySpecialError.ancestors.include?(Object)
+    assert_equal __(RuntimeError), MySpecialError.ancestors[1]
+    assert_equal __(StandardError), MySpecialError.ancestors[2]
+    assert_equal __(Exception), MySpecialError.ancestors[3]
+    assert_equal __(Object), MySpecialError.ancestors[4]
   end
 
   def test_rescue_clause
